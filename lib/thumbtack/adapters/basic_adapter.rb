@@ -84,9 +84,11 @@ module Thumbtack
       # @api private
       def connection(host, port)
         Net::HTTP.new(host, port).tap do |connection|
-          connection.use_ssl = true
-          connection.ssl_version = SSL_VERSION
-          connection.ciphers = SSL_CIPHERS
+          if %w(t true yes y 1).include?(ENV.fetch('PINBOARD_API_HTTPS', 'true').to_s.downcase)
+            connection.use_ssl = true
+            connection.ssl_version = SSL_VERSION
+            connection.ciphers = SSL_CIPHERS
+          end
         end
       end
 
