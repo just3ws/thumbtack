@@ -11,7 +11,7 @@ module Thumbtack
       RESPONSE_FORMAT = 'json'
 
       # The base Pinboard API URL.
-      BASE_URL = 'https://api.pinboard.in/v1'
+      BASE_URL = ENV.fetch('PINBOARD_API_BASE_URL', 'https://api.pinboard.in/v1')
 
       # A secure version of SSL
       SSL_VERSION = 'TLSv1_2'
